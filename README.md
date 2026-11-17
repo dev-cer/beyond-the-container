@@ -19,17 +19,17 @@ git clone https://github.com/dev-cer/beyond-the-container
 cd beyond-the-container
 ```
 
-5. **Register in Hackspace** with your name, email and Civo account.
+5. **Register in Launchpad** with your name, email and Civo account.
 
 ## The race
 
 At **10:20 WIB** the facilitator starts the clock. Complete the missions **in order** and press
-**Check on my cluster** in Hackspace after each one. Hackspace checks your real cluster and records
+**Check on my cluster** in Launchpad after each one. Launchpad checks your real cluster and records
 your time. Ranking: most missions passed, then the fastest time.
 
-| Mission | Goal — what Hackspace checks |
+| Mission | Goal — what Launchpad checks |
 |---|---|
-| **M0 Launch** | Your own 3-node cluster in JKT1, connected to Hackspace (3 nodes Ready) |
+| **M0 Launch** | Your own 3-node cluster in JKT1, connected to Launchpad (3 nodes Ready) |
 | **M1 Deploy & Expose** | NusaMart deployed; `http://<EXTERNAL-IP>/health` returns 200 |
 | **M2 Right-size** | Requests = limits (QoS Guaranteed), 2+ replicas ready |
 | **M3 Scale** | An HPA on `ecommerce-rust` (min ≥ 2, max ≥ 4) that has scaled out under load |
@@ -48,8 +48,8 @@ civo kubernetes config civo-k8s-lab --region JKT1 > kubeconfig-civo-k8s-lab.yaml
 kubectl get nodes
 ```
 
-Upload `kubeconfig-civo-k8s-lab.yaml` with **Connect my cluster** in Hackspace, then press **Check on my
-cluster** on M0. Hackspace only reads your cluster for mission checks and deletes the kubeconfig at
+Upload `kubeconfig-civo-k8s-lab.yaml` with **Connect my cluster** in Launchpad, then press **Check on my
+cluster** on M0. Launchpad only reads your cluster for mission checks and deletes the kubeconfig at
 23:59 WIB. Never upload or share your API key.
 
 M1 onwards — start here:
@@ -67,7 +67,7 @@ kubectl apply -k k6
 kubectl logs -f job/k6-flash-sale -n loadtest
 ```
 
-The step-by-step commands for every mission are in Hackspace (type `hint` in its terminal).
+The step-by-step commands for every mission are in Launchpad (type `hint` in its terminal).
 
 ## Rules
 
