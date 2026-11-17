@@ -9,7 +9,7 @@ a small e-commerce shop, from "it runs" to "it survives a 12.12 flash sale" — 
 ## Before you start
 
 1. **Your own Civo account** (required to register): <https://dashboard.civo.com/signup> — verify email
-   and phone and add a credit/debit card (not prepaid/virtual). New accounts get USD 250 credit.
+   and phone and add a credit/debit card (not prepaid/virtual). New accounts get $250 credit.
 2. **An API key** from Profile → Security → API keys. It stays on your laptop.
 3. **Tools**: `civo` CLI, `kubectl`, `git`.
 4. **This repo**:
