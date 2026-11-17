@@ -1,0 +1,14 @@
+# BEFORE: one replica, tiny CPU limit -> throttled under load (slow, not crashing). QoS: Burstable.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-rust
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: app
+          resources:
+            requests: { cpu: 50m, memory: 32Mi }
+            limits: { cpu: 100m, memory: 64Mi }

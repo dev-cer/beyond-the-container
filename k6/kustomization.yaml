@@ -1,0 +1,16 @@
+# In-cluster load test for workshop participants (no k6 on the laptop):
+#   kubectl apply -k k6
+#   kubectl logs -f job/k6-flash-sale -n loadtest
+# Run it again:
+#   kubectl delete job k6-flash-sale -n loadtest ; kubectl apply -k k6
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: loadtest
+resources:
+  - job.yaml
+configMapGenerator:
+  - name: k6-script
+    files:
+      - flash-sale.js
+generatorOptions:
+  disableNameSuffixHash: true
