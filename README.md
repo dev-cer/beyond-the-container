@@ -19,7 +19,7 @@ git clone https://github.com/dev-cer/beyond-the-container
 cd beyond-the-container
 ```
 
-5. **Register in Launchpad** with your name, email and Civo account.
+5. **Register in Civo Launchpad** at **<https://s.id/civo-launchpad>** with your name, email and Civo account.
 
 ## The race
 
@@ -67,7 +67,9 @@ kubectl apply -k k6
 kubectl logs -f job/k6-flash-sale -n loadtest
 ```
 
-The step-by-step commands for every mission are in Launchpad (type `hint` in its terminal).
+The step-by-step commands for every mission are in Civo Launchpad (type `hint` in its terminal).
+
+After the workshop, keep learning in the **Civo Kubernetes Academy**: <https://s.id/civo-academy>
 
 ## Rules
 
