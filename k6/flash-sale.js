@@ -34,6 +34,10 @@ const PROFILES = {
     { duration: "30s", target: 0 },
   ],
 };
+const RUSH = PROFILE === "quick";
+const RECO_CALLS = RUSH ? 6 : 2;          // recommendations per shopper visit
+const THINK_MIN = RUSH ? 0.05 : 0.5;      // seconds of think time between visits
+const THINK_SPREAD = RUSH ? 0.15 : 1.0;
 if (!PROFILES[PROFILE]) throw new Error(`Unknown PROFILE ${PROFILE} (use: ${Object.keys(PROFILES).join(", ")})`);
 
 export const options = {
@@ -58,10 +62,12 @@ export default function ({ ids }) {
   check(http.get(`${BASE_URL}/api/products`), { "catalog 200": (r) => r.status === 200 });
   check(http.get(`${BASE_URL}/api/products?q=${SEARCHES[Math.floor(Math.random() * SEARCHES.length)]}`), { "search 200": (r) => r.status === 200 });
   check(http.get(`${BASE_URL}/api/products/${pick()}`), { "product 200": (r) => r.status === 200 });
-  for (let i = 0; i < 2; i++) {
+  // Mission profile ("quick"): a real rush - shoppers hammer recommendations (the CPU-heavy endpoint) with
+  // little think time, so CPU climbs well past the HPA target of 60 % of the 500m request.
+  for (let i = 0; i < RECO_CALLS; i++) {
     check(http.get(`${BASE_URL}/api/recommendations?product_id=${pick()}`), { "recommendations 200": (r) => r.status === 200 });
   }
-  sleep(Math.random() * 1.0 + 0.5);
+  sleep(Math.random() * THINK_SPREAD + THINK_MIN);
 }
 
 export function handleSummary(data) {
