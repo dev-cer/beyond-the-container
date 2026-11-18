@@ -11,7 +11,9 @@ a small e-commerce shop, from "it runs" to "it survives a 12.12 flash sale" — 
 1. **Your own Civo account** (required to register): <https://dashboard.civo.com/signup> — verify email
    and phone and add a credit/debit card (not prepaid/virtual). New accounts get $250 credit.
 2. **An API key** from Profile → Security → API keys. It stays on your laptop.
-3. **Tools**: `civo` CLI, `kubectl`, `git`.
+3. **Tools**: `civo` CLI, `kubectl`, `git`. On Windows use **PowerShell 7** (`winget install Microsoft.PowerShell`, then run `pwsh`)
+   or Git Bash — Windows PowerShell 5.1 drops the quotes inside JSON arguments. In PowerShell, always quote values
+   that contain a comma, e.g. `--requests="cpu=500m,memory=128Mi"`.
 4. **This repo**:
 
 ```bash
