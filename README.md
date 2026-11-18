@@ -44,13 +44,20 @@ civo apikey use my-civo
 civo region use JKT1
 civo kubernetes create civo-k8s-lab --size g4s.kube.medium --nodes 3 --cni-plugin cilium \
   --create-firewall --wait --save --merge --switch
-civo kubernetes config civo-k8s-lab --region JKT1 > kubeconfig-civo-k8s-lab.yaml
 kubectl get nodes
 ```
 
-Upload `kubeconfig-civo-k8s-lab.yaml` with **Connect my cluster** in Launchpad, then press **Check on my
-cluster** on M0. Launchpad only reads your cluster for mission checks and deletes the kubeconfig at
-23:59 WIB. Never upload or share your API key.
+Then press **Connect my cluster** in Launchpad and run the one command it shows you:
+
+```bash
+kubectl apply -f https://<launchpad>/join/agt-<your-personal-link>.yaml
+kubectl get pods -n civo-launchpad      # mission-agent 1/1 Running
+```
+
+This installs the **Mission Agent**: a tiny pod with **read-only** access (nodes, pods, services, deployments,
+HPAs, PDBs — never Secrets or ConfigMaps). It reports to Launchpad over HTTPS; no kubeconfig or API key leaves
+your laptop. When the dialog turns green, press **Check on my cluster** on M0.
+Can't run it? The dialog also lets you upload a kubeconfig instead. Never upload or share your API key.
 
 M1 onwards — start here:
 
@@ -76,8 +83,9 @@ After the workshop, keep learning in the **Civo Kubernetes Academy**: <https://s
 - Do not change the container image or the `RECO_WORK` value — the checks verify both.
 - Your API key and kubeconfig are yours alone. Do not share them.
 - Account blocked on the day? Ask a facilitator for a backup seat.
+- Do not delete the `civo-launchpad` namespace during the race — Launchpad checks your missions through it.
 - Your cluster is billed per hour from your credit. When you are done:
-  `civo kubernetes delete civo-k8s-lab --region JKT1 -y`, then check `civo volume ls` and `civo loadbalancer ls`.
+  `civo kubernetes delete civo-k8s-lab --region JKT1 -y` (this removes the Mission Agent too), then check `civo volume ls` and `civo loadbalancer ls`.
 
 ## What is in this repo
 
