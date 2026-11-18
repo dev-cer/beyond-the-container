@@ -18,8 +18,9 @@ const LABEL = __ENV.LABEL || "";
 
 const PROFILES = {
   smoke: [{ duration: "10s", target: 10 }, { duration: "20s", target: 10 }],
-  // Workshop missions: 45 s, enough to show throttling and to trigger the HPA.
-  quick: [{ duration: "10s", target: 150 }, { duration: "30s", target: 150 }, { duration: "5s", target: 0 }],
+  // Workshop missions: ~2.5 min. A new HPA needs 30-60 s before it has CPU metrics (TARGETS <unknown>),
+  // so the load must last long enough for it to see the rush and scale out.
+  quick: [{ duration: "10s", target: 150 }, { duration: "120s", target: 150 }, { duration: "10s", target: 0 }],
   sale: [
     { duration: "15s", target: 50 },   // doors open
     { duration: "15s", target: 250 },  // 00:00 - the rush
