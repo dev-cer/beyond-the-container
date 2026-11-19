@@ -8,9 +8,9 @@ a small e-commerce shop, from "it runs" to "it survives a 12.12 flash sale" — 
 
 ## Before you start
 
-1. **Your own Civo account** (required to register): <https://dashboard.civo.com/signup> — verify email
+1. **Your own Civo account** (required to register): <https://www.civo.com/signup> — verify email
    and phone and add a credit/debit card (not prepaid/virtual). New accounts get $250 credit.
-2. **Register in Civo Launchpad** at **<https://s.id/civo-launchpad>** with your name, email and Civo account.
+2. **Register for the workshop** at **<https://bit.ly/workshopcivo-08>**, then on race day sign in to the workshop app at **<https://arupacloud.com/workshop>** with your name, email and Civo account.
 3. **A laptop with a browser.** That's it if you use the **Launchpad Shell** (recommended): a Linux terminal in
    your browser with `kubectl`, `git` and this repo ready — same on Windows, Mac and Linux, no API key needed.
 
@@ -25,6 +25,20 @@ e.g. `--requests="cpu=500m,memory=128Mi"`.
 At **10:20 WIB** the facilitator starts the clock. Complete the missions **in order** and press
 **Check on my cluster** in Launchpad after each one. Launchpad checks your real cluster and records
 your time. Ranking: most missions passed, then the fastest time.
+
+### 🐞 Bug hunt
+
+From M1 on, **every mission hides one planted bug** in this repo. Read the manifests before you apply them.
+When a check fails, Launchpad tells you *what* fails and gives a free clue. Still stuck? Open the **hint**
+on the mission card: it shows the exact fix, and costs **10 points and +2 minutes** on Mission Control.
+
+| Mission | Start with |
+|---|---|
+| M1 | `kubectl apply -k k8s/overlays/before` |
+| M2 | the resources of the running Deployment |
+| M3 | `kubectl apply -f k8s/missions/m3-hpa.yaml` |
+| M4 | `kubectl apply -f k8s/missions/m4-pdb.yaml` |
+| Final | `kubectl patch deploy ecommerce-rust -n nusamart --type merge --patch-file k8s/missions/final-spread.yaml` |
 
 | Mission | Goal — what Launchpad checks |
 |---|---|
@@ -101,5 +115,6 @@ After the workshop, keep learning in the **Civo Kubernetes Academy**: <https://s
 k8s/base/                 Namespace, Deployment, Service (LoadBalancer)
 k8s/components/undersized the "before" sizing: 1 replica, CPU limit 100m
 k8s/overlays/before       your starting point
+k8s/missions/             m3-hpa.yaml, m4-pdb.yaml, final-spread.yaml (one bug each)
 k6/                       in-cluster flash-sale load test
 ```

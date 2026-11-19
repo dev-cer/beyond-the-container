@@ -1,0 +1,15 @@
+# Final: one NusaMart pod per node, so losing a node never takes the shop down.
+# Apply (a merge patch replaces the whole list of spread rules):
+#   kubectl patch deploy ecommerce-rust -n nusamart --type merge --patch-file k8s/missions/final-spread.yaml
+spec:
+  template:
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/host
+          whenUnsatisfiable: DoNotSchedule
+          nodeTaintsPolicy: Honor
+          matchLabelKeys: [pod-template-hash]
+          labelSelector:
+            matchLabels:
+              app: ecommerce-rust

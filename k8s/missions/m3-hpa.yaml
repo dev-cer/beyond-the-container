@@ -1,0 +1,21 @@
+# M3 Scale: autoscale NusaMart on CPU (2 to 8 pods, target 60% of the CPU request).
+# Apply: kubectl apply -f k8s/missions/m3-hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ecommerce-rust
+  namespace: nusamart
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ecommerce-rust-app
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60

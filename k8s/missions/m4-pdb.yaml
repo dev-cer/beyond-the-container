@@ -1,0 +1,12 @@
+# M4 Stay Available: keep NusaMart selling while a node is drained.
+# Apply: kubectl apply -f k8s/missions/m4-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ecommerce-rust
+  namespace: nusamart
+spec:
+  minAvailable: 100%
+  selector:
+    matchLabels:
+      app: ecommerce-rust
