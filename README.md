@@ -10,7 +10,7 @@ a small e-commerce shop, from "it runs" to "it survives a 12.12 flash sale" — 
 
 1. **Your own Civo account** (required to register): <https://www.civo.com/signup> — verify email
    and phone and add a credit/debit card (not prepaid/virtual). New accounts get $250 credit.
-2. **Register for the workshop** at **<https://bit.ly/workshopcivo-08>**, then on race day sign in to the workshop app at **<https://arupacloud.com/workshop>** with your name, email and Civo account.
+2. **Register for the workshop** at **<https://forms.gle/zLLTAMM5FLv1ibbw9>**, then on race day sign in to the workshop app at **<https://arupacloud.com/workshop>** with your name, email and Civo account.
 3. **A laptop with a browser.** That's it if you use the **Launchpad Shell** (recommended): a Linux terminal in
    your browser with `kubectl`, `git` and this repo ready — same on Windows, Mac and Linux, no API key needed.
 
